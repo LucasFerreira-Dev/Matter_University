@@ -6,21 +6,37 @@ total de vendas usando apenas a função TotalVendas; Que slader omi :(
 #include <stdio.h>
 
 typedef struct {
-    int horas;
-} Tempo;
+    float valor;
+} Vendas;
 
+// Função
+float TotalVendas(Vendas vendas[], int tamanho) {
+    //variavel local
+    float total = 0;
+
+    //laço
+    for (int i = 0; i < tamanho; i++) {
+        total += vendas[i].valor;
+    }
+
+    return total;//return
+}
 
 int main() {
     // chamar struct
-    Tempo tempo;
+    Vendas vendas[3];
 
-    //variaveis
+    // Entrada de dados
+    for (int i = 0; i < 3; i++) {
+        printf("Digite o valor da venda %d: ", i + 1);
+        scanf("%f", &vendas[i].valor);
+    }
 
-    //entrada
+    // Calculo
+    float total = TotalVendas(vendas, 3);
 
-    //logica
-
-    //saida
+    // Saida
+    printf("O total de vendas: %.2f\n", total);
 
     return 0;
 }
