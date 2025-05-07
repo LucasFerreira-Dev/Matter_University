@@ -1,5 +1,5 @@
 /*
-Usando a estrutura Vendas criada aqui nos slides, e a função TotalVendas, crie o programa que lê três vendas do teclado e depois mostra o 
+4) Usando a estrutura Vendas criada aqui nos slides, e a função TotalVendas, crie o programa que lê três vendas do teclado e depois mostra o 
 total de vendas usando apenas a função TotalVendas; Que slader omi :(
 */
 
