@@ -1,13 +1,26 @@
-// Exemplo em JavaScript
-fetch("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL")
-    .then(response => response.json())
-    .then(data => {
-        // Obtém a cotação do dólar
-        let resultado = parseFloat(data.USDBRL.bid);
-        
-        // Exibe a cotação com duas casas decimais
-        document.write(`Cotação do dólar hoje: ${resultado.toFixed(2)}`);
-    })
-    .catch(error => {
-        document.write("Erro ao buscar a cotação:", error);
-    });
+function buscarCotacao() {
+    const moedaDe = document.getElementById("moeda1").value;
+    const moedaPara = document.getElementById("moeda2").value;
+
+    if (moedaDe === moedaPara) {
+      document.getElementById("resultado").innerText = "Selecione moedas diferentes.";
+      return;
+    }
+
+    const parMoeda = `${moedaDe}-${moedaPara}`;
+
+    fetch(`https://economia.awesomeapi.com.br/last/${parMoeda}`)
+      .then(response => response.json())
+      .then(data => {
+        const chave = `${moedaDe}${moedaPara}`; // ex: USDBRL, EURUSD
+        const cotacao = parseFloat(data[chave].bid);
+
+        document.getElementById("resultado").innerText =
+          `1 ${moedaDe} = ${cotacao.toFixed(2)} ${moedaPara}`;
+      })
+      .catch(error => {
+        document.getElementById("resultado").innerText =
+          "Erro ao buscar a cotação.";
+        console.error(error);
+      });
+  }

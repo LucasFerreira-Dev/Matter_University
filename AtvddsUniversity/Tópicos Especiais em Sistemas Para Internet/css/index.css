@@ -84,13 +84,45 @@ html, body {
     align-items: center; /* Centraliza verticalmente */
     padding: 20px;
     height: 80%;
+    flex-direction: column; /* Organiza os filhos em coluna */
 }
 
 .meio {
+    font-size: 40px; /* aumenta o tamanho da letra */
     display: flex;
-    background-color: aqua;
-    height: 93%;
-    margin: 10px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+    text-align: center; 
+    color: white;
+}
+
+.linha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Espaço entre os selects e botão */
+    margin-top: 20px;
+    flex-wrap: wrap; /* Quebra linha em telas pequenas */
+}
+
+#resultado {
+    font-size: 40px; /* aumenta o tamanho da letra */
+    font-weight: bold; /* deixa em negrito */
+    color: #ffffff; /* cor do texto (mude se quiser outro) */
+    margin-top: 20px; /* espaço acima */
+}
+
+.opcao {
+    font-size: 30px; /* Aumenta o tamanho do texto do placeholder */
+    color: #888; /* Define a cor do texto do placeholder */
+    font-style: italic; /* Opcional: deixa o texto em itálico */
+    text-align: center; /* Centraliza o texto horizontalmente */
+    border-radius: 30px;
+    width: 300px;
+    height: 100px;
 }
 
 /*footer rodape da pagina*/
