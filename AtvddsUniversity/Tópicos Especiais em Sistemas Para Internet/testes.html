@@ -6,21 +6,60 @@
     <title>Testes</title>
 </head>
 <body>
-    <label for="moedas">Escolha uma opção:</label>
-    <select id="moedas" name="moedas">
-      <option value="dolar">Dólar</option>
-      <option value="reais">Reais</option>
-      <option value="euro">Euro</option>
+    <label for="moeda1">Converter de:</label>
+    <select id="moeda1" name="moeda1">
+        <option value="USD">Dólar</option>
+        <option value="EUR">Euro</option>
+        <option value="BRL">Real</option>
+        <option value="BTC">Bitcoin</option>
+        <option value="GBP">Libra</option>
+        <option value="JPY">Iene</option>
+        <option value="CHF">Franco Suíço</option>
     </select>
   
-    <button onclick="mostrarMoeda()">Mostrar moeda</button>
+    <label for="moeda2">Para:</label>
+    <select id="moeda2" name="moeda2">
+        <option value="BRL">Real</option>
+        <option value="USD">Dólar</option>
+        <option value="EUR">Euro</option>
+        <option value="BTC">Bitcoin</option>
+        <option value="GBP">Libra</option>
+        <option value="JPY">Iene</option>
+        <option value="CHF">Franco Suíço</option>
+    </select>
+  
+    <button onclick="buscarCotacao()">Buscar Cotação</button>
+  
+    <p id="resultado"></p>
   
     <script>
-      function mostrarMoeda() {
-        const select = document.getElementById("moedas");
-        const valorSelecionado = select.value;
-        alert("Você escolheu: " + valorSelecionado);
+      function buscarCotacao() {
+        const moedaDe = document.getElementById("moeda1").value;
+        const moedaPara = document.getElementById("moeda2").value;
+  
+        if (moedaDe === moedaPara) {
+          document.getElementById("resultado").innerText = "Selecione moedas diferentes.";
+          return;
+        }
+  
+        const parMoeda = `${moedaDe}-${moedaPara}`;
+  
+        fetch(`https://economia.awesomeapi.com.br/last/${parMoeda}`)
+          .then(response => response.json())
+          .then(data => {
+            const chave = `${moedaDe}${moedaPara}`; // ex: USDBRL, EURUSD
+            const cotacao = parseFloat(data[chave].bid);
+  
+            document.getElementById("resultado").innerText =
+              `1 ${moedaDe} = ${cotacao.toFixed(4)} ${moedaPara}`;
+          })
+          .catch(error => {
+            document.getElementById("resultado").innerText =
+              "Erro ao buscar a cotação.";
+            console.error(error);
+          });
       }
     </script>
-</body>  
+  </body>
+
 </html>
