@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testes</title>
+</head>
+<body>
+    <label for="moedas">Escolha uma opção:</label>
+    <select id="moedas" name="moedas">
+      <option value="dolar">Dólar</option>
+      <option value="reais">Reais</option>
+      <option value="euro">Euro</option>
+    </select>
+  
+    <button onclick="mostrarMoeda()">Mostrar moeda</button>
+  
+    <script>
+      function mostrarMoeda() {
+        const select = document.getElementById("moedas");
+        const valorSelecionado = select.value;
+        alert("Você escolheu: " + valorSelecionado);
+      }
+    </script>
+</body>  
+</html>
