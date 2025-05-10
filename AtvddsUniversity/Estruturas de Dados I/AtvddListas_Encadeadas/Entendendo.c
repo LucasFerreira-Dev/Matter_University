@@ -4,7 +4,7 @@
 struct Lista {
     int info;
     struct Lista* prox;
-} Tempo;
+};
 
 //criar o objeto
 typedef struct Lista lista;
