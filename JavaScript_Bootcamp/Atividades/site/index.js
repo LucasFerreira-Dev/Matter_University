@@ -46,6 +46,3 @@ console.log(myLibrary); // [Book]
 //Mostrar de formar organizada
 console.log("\nTudo armazenado em myLibrary:");
 console.log(showEverything());
-
-
-
