@@ -5,9 +5,9 @@ _0_|_x_|_x_
 */
 
 const tabuleiro = [
-  ["-", "-", "-"],
-  ["-", "-", "-"],
-  ["-", "-", "-"]
+  ["1", "2", "3"],
+  ["4", "5", "6"],
+  ["7", "8", "9"]
 ];
 
 function fazerJogada(linha, coluna, XO){
@@ -52,6 +52,8 @@ function interface(){
     //variaveis
     let jogador1;
     let jogador2;
+    let nome1 = "";
+    let nome2 = "";
     
     // Importa o módulo readline
     const readline = require('readline');
@@ -63,7 +65,7 @@ function interface(){
     });
 
     return {
-        criarJogadores(){
+        jogando(){
             input_.question('Digite o nome do primeiro jogador: ', (resposta1) => {
                 const nome1 = resposta1;
 
@@ -73,10 +75,15 @@ function interface(){
                     //criando jogadores
                     const Jogadores = jogadores(nome1, nome2);
                     console.log(`Jogadores: ${nome1} vs ${nome2}`);
-                    input_.close();
+                    
+                    //mostrar tabuleiro
+                    Jogadores.mostrarTabuleiro();
+
+                    input_.close(); //fechar o input_
                 });
             });
         }
+        
     }
 }
 
@@ -98,4 +105,4 @@ Jogadores.mostrarTabuleiro();
 
 //interface
 const Interface = interface();
-Interface.criarJogadores();
+Interface.jogando();
