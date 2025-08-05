@@ -52,8 +52,6 @@ function interface(){
     //variaveis
     let jogador1;
     let jogador2;
-    let nome1 = "";
-    let nome2 = "";
     
     // Importa o módulo readline
     const readline = require('readline');
