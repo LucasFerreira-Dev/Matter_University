@@ -76,12 +76,13 @@ function interface(){
                     
                     //mostrar tabuleiro
                     Jogadores.mostrarTabuleiro();
-
+                    
+                    //entrada da jogadas
+                    input_.question('Digite o número aonde vc jogara ')
                     input_.close(); //fechar o input_
                 });
             });
         }
-        
     }
 }
 
