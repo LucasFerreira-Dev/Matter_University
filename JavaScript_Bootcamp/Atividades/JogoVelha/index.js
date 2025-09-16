@@ -62,9 +62,43 @@ function interface(){
       output: process.stdout
     });
 
+    function jogadaTuleiro(jogou) {
+        switch(jogou) {
+            case '1':
+                fazerJogada(0, 0, "x"); 
+                break;
+            case '2':
+                fazerJogada(0, 1, "x");
+                break;
+            case '3':
+                fazerJogada(0, 2, "x");
+                break;
+            case '4':
+                fazerJogada(1, 0, "x");
+                break;
+            case '5':
+                fazerJogada(1, 1, "x");
+                break;
+            case '6':
+                fazerJogada(1, 2, "x");
+                break;
+            case '7':
+                fazerJogada(2, 0, "x");
+                break;
+            case '8':
+                fazerJogada(2, 1, "x");
+                break;
+            case '9':
+                fazerJogada(2, 2, "x");
+                break;
+            default:
+                console.log("Jogada não existe\n");
+        }
+    }
+
     return {
         jogando(){
-            input_.question('Digite o nome do primeiro jogador: ', (resposta1) => {
+            input_.question('\nDigite o nome do primeiro jogador: ', (resposta1) => {
                 const nome1 = resposta1;
 
                 input_.question('Digite o nome do segundo jogador: ', (resposta2) => {
@@ -78,8 +112,17 @@ function interface(){
                     Jogadores.mostrarTabuleiro();
                     
                     //entrada da jogadas
-                    input_.question('Digite o número aonde vc jogara ')
-                    input_.close(); //fechar o input_
+                    input_.question('Digite o número aonde vc jogará: ', (respostaJogada) => {
+                        const jogou = respostaJogada;
+                        
+                        //chamar função e fazer a jogada ir para a matriz
+                        jogadaTuleiro(jogou);
+
+                        //mostrar tabuleiro
+                        Jogadores.mostrarTabuleiro();
+
+                        input_.close(); //fechar o input_
+                    });
                 });
             });
         }
