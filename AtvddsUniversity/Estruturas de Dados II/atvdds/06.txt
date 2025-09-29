@@ -1,0 +1,25 @@
+06)	Crie a função que recebe duas matrizes quadradas de tamanho idênticos. A função soma os elementos da primeira matriz, depois soma os elementos da segunda matriz e por fim retorna a matriz que teve a maior soma. Calcule a complexidade, o big O e considere que cada matriz possui 10³ linhas e 10³ colunas para determinar quanto tempo seria gasto para executar este algoritmo;
+
+Q6(M1[n][n], M2[n][n], n)                         
+    soma1 = 0                                     1
+    soma2 = 0                                     1
+    
+    para i variando 1 ate n                       n + 1
+        para j variando de 1 ate n                n * (n + 1)
+            soma1 = soma1 + M1[i][j]              n²
+            soma2 = soma2 + M2[i][j]              n²
+    
+    se soma1 > soma2                              1
+        retorna M1                                1 + 1 = 2
+    senão                                         
+        retorna M2                                1 + 1 = 2
+
+f(x) = 1 + 1 + n + 1 + n² + n + n² + n² + 1 + 2
+f(x) = 3n² + 2n + 6 -> o(n²) -> quadratica  -> revisar o calculo
+
+matriz é de 10³ -> n² = (10³)² -> 10⁶
+
+1s --- 10⁷
+X --- 10⁶
+
+X = 10⁶ / 10⁷ = 10-¹ = 0,1seg

@@ -1,0 +1,12 @@
+Q8(M[n][n][n], n)
+    para i variando 1 ate n                       n + 1
+        para j variando de 1 ate n                n * (n + 1)
+            para k variando de 1 ate n            n² * (n + 1)
+                se k == 1 ou k == n               n³
+                    M[i][j][k] = 1                n³
+                senão
+                    M[i][j][k] = 0                n³ + n³
+    retornar M                                    1
+
+f(x) = n + 1 + n² + n + n³ + n² + n³ + n³ + 2n³ + 1
+f(x) = 5n³ + 2n² + 2n + 2 -> O(n³) -> Cubica -> revisar o calculo

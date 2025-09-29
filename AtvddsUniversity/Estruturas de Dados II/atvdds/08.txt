@@ -1,0 +1,33 @@
+08)	Crie a função que recebe uma matriz quadrada e calcula a soma dos elementos da diagonal principal (que será chamada de primeira soma), e a soma de todos os outros elementos que não estão na diagonal principal (que será chamada de segunda soma). 
+
+Se a segunda soma for maior que o triplo da primeira, uma nova matriz (nova[n][n]) quadrada deve ser formada, e os valores de suas células devem obedecer à equação nova[i][j]=2i+3j-5 em que as multiplicações são feitas usando a função mult01(x,y) que recebe os valores a serem multiplicados e usa o algoritmo de Harvey e van der Hoeven (que tem complexidade de nlogn). 
+
+Caso a segunda soma não seja maior do que o triplo da primeira, então deve ser criada a nova matriz de forma que seus valores são o Máximo Divisor Comum entre 10i e 7j, usando a função MDC(x,y) que recebe dois valores e usa o algoritmo Euclidiano, que tem complexidade de O(n²). Calcule a complexidade, o big O e considere n=10³ para calcular o tempo de execução;
+
+
+Q8(M[n][n], n)
+    primeiraSoma = 0                                                        1
+    segundaSoma = 0                                                         1
+
+    para i variando de 1 até n:                                                      n + 1
+        para j variando de 1 até n:                                                  n * (n + 1)
+            se i = j então                                                  n²
+                primeiraSoma = primeiraSoma + matriz[i][j]                  n² + n² = 2n²
+            senão
+                segundaSoma = segundaSoma + matriz[i][j]                    n² + n² = 2n²
+
+    se segundaSoma > 3 * primeiraSoma então                                 1             1 + 1 + n + 1 + n² + n + n² + 1 = 2n² + 2n + 4
+        nova[n][n]                                                          1
+        para i variando de 1 até n:                                                  n + 1
+            para j variando de 1 até n:                                              n * (n + 1)
+                nova[i][j] = mult01(2*i, 3*j) - 5                           n² + 1
+    senão
+        nova[n][n]                                                          1               1 + n + 1 + n² + n + n² + 1 = 2n² + 2n + 3
+        para i variando de 1 até n:                                                  n + 1  
+            para j variando de 1 até n:                                              n * (n + 1)
+                nova[i][j] = MDC(10*i, 7*j)                                 n² + 1
+
+    retornar nova                                                           1
+
+    f(x) = 1 + 1 + n + 1 + n² + n + 2n² + 2n² + 2n + 4 + 1x
+    f(x) = 5n² + 4n + 8 -> O(n²) -> quadratica 
