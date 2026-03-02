@@ -1,0 +1,2 @@
+Para executar arquivo via teerminal:
+python3 IMC_calculation.py
