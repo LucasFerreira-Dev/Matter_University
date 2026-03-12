@@ -1,0 +1,6 @@
+Descobrir como usar LOMBOK no java para prender usar marcações como:
+@Getter
+@Setter
+@AllArgsConstructor
+
+"Antes precisamos entender os requizitos do problema para depois ir programar" -- normal

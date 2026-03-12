@@ -1,0 +1,12 @@
+javac Main.java
+java Main
+
+javac App.java
+java App
+
+javac *.java
+java App
+
+criando classes e executando app.java estando em package
+    javac nomePackage/*.java
+    java nomePackage.App
