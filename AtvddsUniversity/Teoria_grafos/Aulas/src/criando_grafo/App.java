@@ -35,6 +35,35 @@ public class App {
         graph.addEdge(g);
         graph.addEdge(h);
 
+        System.out.println("===== GRAPH 1 =====");
         graph.showGraph();
+        graph.showType();
+
+        // new graph
+        Graph graph2 = new Graph();
+
+        graph2.addVertex(u);
+        graph2.addVertex(v);
+        graph2.addVertex(w);
+
+        Edge e1 = new Edge("a", "u", "v");
+        Edge e2 = new Edge("a'", "v", "u");
+
+        Edge e3 = new Edge("b", "v", "w");
+        Edge e4 = new Edge("b'", "w", "v");
+
+        Edge e5 = new Edge("c", "u", "w");
+        Edge e6 = new Edge("c'", "w", "u");
+
+        graph2.addEdge(e1);
+        graph2.addEdge(e2);
+        graph2.addEdge(e3);
+        graph2.addEdge(e4);
+        graph2.addEdge(e5);
+        graph2.addEdge(e6);
+
+        System.out.println("\n===== GRAPH 2 =====");
+        graph2.showGraph();
+        graph2.showType();
     }
 }

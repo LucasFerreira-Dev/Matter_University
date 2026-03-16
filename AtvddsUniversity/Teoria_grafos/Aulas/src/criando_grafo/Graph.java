@@ -19,8 +19,35 @@ public class Graph {
         edges.add(e);
     }
 
+    public boolean isDirected() {
+        for (Edge edge : edges) {
+            boolean foundReverse = false;
+
+            for (Edge other : edges) {
+                if (edge.edge1.equals(other.edge2) && edge.edge2.equals(other.edge1)) {
+                    foundReverse = true;
+                    break;
+                }
+            }
+
+            if (!foundReverse) {
+                return true; // directed
+            }
+        }
+
+        return false; // not directed
+    }
+
+    public void showType() {
+        if (isDirected()) {
+            System.out.println("\nThe graph is DIRECTED.");
+        } else {
+            System.out.println("\nThe graph is NOT directed.");
+        }
+    }
+
     public void showGraph() {
-        System.out.printf("Vértices:\n\t");
+        System.out.printf("Vertices:\n\t");
         for (int i = 0; i < vertices.size(); i++) {
             System.out.print(vertices.get(i));
 
@@ -29,7 +56,7 @@ public class Graph {
             }
         }
 
-        System.out.printf("\n\nArestas:\n\t");
+        System.out.printf("\n\nEdges:\n\t");
         for (int i = 0; i < edges.size(); i++) {
             System.out.print(edges.get(i).name);
 
@@ -38,7 +65,7 @@ public class Graph {
             }
         }
 
-        System.out.printf("\n\nTridente_h:\n");
+        System.out.printf("\n\nEdge list:\n");
         for (Edge e : edges) {
             System.out.printf("\t%s\n", e);
         }

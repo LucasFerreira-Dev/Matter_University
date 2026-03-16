@@ -10,3 +10,6 @@ java App
 criando classes e executando app.java estando em package
     javac nomePackage/*.java
     java nomePackage.App
+    
+    javac criando_grafo/*.java
+    java criando_grafo.App
