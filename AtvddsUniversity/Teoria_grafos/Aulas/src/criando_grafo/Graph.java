@@ -15,6 +15,14 @@ public class Graph {
         vertices.add(v);
     }
 
+    public void addVertex(String value) {
+        addVertex(new Vertex(value));
+    }
+
+    public void addVertex(int value) {
+        addVertex(String.valueOf(value));
+    }
+
     public void addEdge(Edge e) {
         edges.add(e);
     }
