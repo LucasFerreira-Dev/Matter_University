@@ -94,6 +94,50 @@ void mostrarDividaTotal(Map<int, Map<int, double>> dados) {
   print("=================================");
 }
 
+void mostrarMaiorNumMultas(Map<int, Map<int, double>> dados) {
+  int maiorValor = 0;
+  List<int> donos = [];
+
+  if (dados.isEmpty) {
+    print("\n=== Tabela de maior numero de multas ===");
+    print("Nenhuma multa cadastrada no sistema.");
+    print("==========================================");
+    return;
+  }
+
+  print("\n=== Tabela de maior numero de multas ===");
+  for (var carteira in dados.entries) {
+    int carteiraDados = carteira.key;
+    Map<int, double> multasCarteira = carteira.value;
+
+    int contador = multasCarteira.length;
+
+    if (contador == 0) {
+      continue;
+    }
+
+    if (contador > maiorValor) {
+      maiorValor = contador;
+      donos = [carteiraDados];
+    } else if (contador == maiorValor) {
+      donos.add(carteiraDados);
+    }
+  }
+
+  if (maiorValor == 0) {
+    print("Nenhuma multa encontrada para qualquer carteira.");
+  } else if (donos.length > 1) {
+    print(
+      "  Atualmente existem ${donos.length} carteiras com o maior numero de multas: ${donos.join(', ')}",
+    );
+    print("  Quantidade de multas: ${maiorValor}");
+  } else {
+    print("  Carteira titular ${donos.first}");
+    print("  Quantidade de multas atualmente ${maiorValor}");
+  }
+  print("==========================================");
+}
+
 void mostrarTotalArrecadado(Map<int, Map<int, double>> dados) {
   double valor = 0.0;
 
@@ -108,7 +152,6 @@ void mostrarTotalArrecadado(Map<int, Map<int, double>> dados) {
   print("\n=== Tabela arrecadacoes ===");
   for (var carteira in dados.entries) {
     Map<int, double> multasCarteira = carteira.value;
-
     if (multasCarteira.isEmpty) {
       print("  Nenhuma lucro encontrado.");
     } else {
@@ -127,5 +170,6 @@ void main() {
   print("\nSistema de multas:");
   mostrarTudo(multas);
   mostrarDividaTotal(multas);
+  mostrarMaiorNumMultas(multas);
   mostrarTotalArrecadado(multas);
 }
