@@ -1,175 +1,60 @@
 import 'dart:io';
 
-Map<int, Map<int, double>> cadastrarMultas() {
-  Map<int, Map<int, double>> sistema = {};
+class Informations {
+  String? _login;
+  String? _senha;
+  String? _nome;
+  String? _idade;
 
-  while (true) {
-    stdout.write("Numero da carteira: ");
-    int carteira = int.parse(stdin.readLineSync()!);
+  set nome(String valor) => _nome = valor.trim();
+  set login(String valor) => _login = valor.trim();
+  set senha(String valor) => _senha = valor.trim();
+  set idade(String valor) => _idade = valor.trim();
 
-    if (carteira < 1 || carteira > 4327) break;
-
-    sistema[carteira] = {};
-
-    while (true) {
-      stdout.write("Numero da multa: ");
-      int numMulta = int.parse(stdin.readLineSync()!);
-
-      stdout.write("Valor da multa: ");
-      double valor = double.parse(stdin.readLineSync()!);
-
-      sistema[carteira]![numMulta] = valor;
-
-      stdout.write("Adicionar outra multa? (s/n): ");
-      String op = stdin.readLineSync()!;
-
-      if (op == "n") break;
-    }
-
-    stdout.write("Adicionar outra Carteira de motorista? (s/n): ");
-    String op = stdin.readLineSync()!;
-
-    if (op == "n") break;
-  }
-
-  return sistema;
-}
-
-void mostrarTudo(Map<int, Map<int, double>> dados) {
-  if (dados.isEmpty) {
-    print("\n=== Tabela de total de multas ===");
-    print("Nenhuma divida atualmente no sistema.");
-    print("=================================");
-
-    return;
-  }
-
-  print("\n=== Resumo do sistema ===");
-  for (var entradaCarteira in dados.entries) {
-    int carteira = entradaCarteira.key;
-    print("Carteira: $carteira");
-
-    Map<int, double> multasCarteira = entradaCarteira.value;
-
-    if (multasCarteira.isEmpty) {
-      print("  Nenhuma multa cadastrada.");
-    } else {
-      for (var entradaMulta in multasCarteira.entries) {
-        print("  Multa ${entradaMulta.key}: R\$${entradaMulta.value}");
-      }
-    }
-  }
-  print("=========================");
-}
-
-void mostrarDividaTotal(Map<int, Map<int, double>> dados) {
-  double valor = 0.0;
-
-  if (dados.isEmpty) {
-    print("\n=== Tabela de total de multas ===");
-    print("Nenhuma divida atualmente no sistema.");
-    print("=================================");
-
-    return;
-  }
-
-  print("\n=== Tabela de total de multas ===");
-  for (var carteira in dados.entries) {
-    int carteiraDados = carteira.key;
-    stdout.write("Carteira: ${carteiraDados}");
-
-    Map<int, double> multasCarteira = carteira.value;
-
-    if (multasCarteira.isEmpty) {
-      print("  Nenhuma multa encontrada.");
-    } else {
-      for (var entradaMulta in multasCarteira.entries) {
-        valor = valor + entradaMulta.value;
-      }
-
-      print("  Valor total da multa R\$${valor}");
-      valor = 0.0;
-    }
-  }
-  print("=================================");
-}
-
-void mostrarMaiorNumMultas(Map<int, Map<int, double>> dados) {
-  int maiorValor = 0;
-  List<int> donos = [];
-
-  if (dados.isEmpty) {
-    print("\n=== Tabela de maior numero de multas ===");
-    print("Nenhuma multa cadastrada no sistema.");
-    print("==========================================");
-    return;
-  }
-
-  print("\n=== Tabela de maior numero de multas ===");
-  for (var carteira in dados.entries) {
-    int carteiraDados = carteira.key;
-    Map<int, double> multasCarteira = carteira.value;
-
-    int contador = multasCarteira.length;
-
-    if (contador == 0) {
-      continue;
-    }
-
-    if (contador > maiorValor) {
-      maiorValor = contador;
-      donos = [carteiraDados];
-    } else if (contador == maiorValor) {
-      donos.add(carteiraDados);
-    }
-  }
-
-  if (maiorValor == 0) {
-    print("Nenhuma multa encontrada para qualquer carteira.");
-  } else if (donos.length > 1) {
-    print(
-      "  Atualmente existem ${donos.length} carteiras com o maior numero de multas: ${donos.join(', ')}",
-    );
-    print("  Quantidade de multas: ${maiorValor}");
-  } else {
-    print("  Carteira titular ${donos.first}");
-    print("  Quantidade de multas atualmente ${maiorValor}");
-  }
-  print("==========================================");
-}
-
-void mostrarTotalArrecadado(Map<int, Map<int, double>> dados) {
-  double valor = 0.0;
-
-  if (dados.isEmpty) {
-    print("\n=== Tabela de total de multas ===");
-    print("Nenhuma lucro infelismente.");
-    print("=================================");
-
-    return;
-  }
-
-  print("\n=== Tabela arrecadacoes ===");
-  for (var carteira in dados.entries) {
-    Map<int, double> multasCarteira = carteira.value;
-    if (multasCarteira.isEmpty) {
-      print("  Nenhuma lucro encontrado.");
-    } else {
-      for (var entradaMulta in multasCarteira.entries) {
-        valor = valor + entradaMulta.value;
-      }
-    }
-  }
-  print("  Valor total arrecadado R\$${valor}");
-  print("=================================");
+  String? get nome => _nome;
+  String? get login => _login;
+  String? get senha => _senha;
+  String? get idade => _idade;
 }
 
 void main() {
-  Map<int, Map<int, double>> multas = cadastrarMultas();
+  // Inicializando o sistema
+  Map<String, Map<String, Map<String, String>>> sistema = {};
 
-  print("\nSistema de multas:");
-  mostrarTudo(multas);
-  mostrarDividaTotal(multas);
-  mostrarMaiorNumMultas(multas);
-  mostrarTotalArrecadado(multas);
+  var pessoa = Informations();
+  pessoa.nome = 'lucas';
+  pessoa.login = 'lucas@gmail.com';
+  pessoa.senha = "1234";
+  pessoa.idade = '19';
+
+  // 🔥 Adicionando no Map
+  sistema[pessoa.login!] = {
+    "dados": {
+      "nome": pessoa.nome!,
+      "senha": pessoa.senha!,
+      "idade": pessoa.idade!,
+    },
+  };
+
+  while (true) {
+    print("\nSistema:");
+    print("1. Exibir as informações");
+    print("2. Mostrar o valor da chave nome");
+    print("3. Remover a chave senha");
+    print("4. Sair");
+
+    stdout.write("Escolha: ");
+    int opcao = int.parse(stdin.readLineSync()!);
+
+    if (opcao == 1) {
+      print(sistema);
+    } else if (opcao == 2) {
+      print(sistema[pessoa.login]!["dados"]!["nome"]);
+    } else if (opcao == 3) {
+      sistema[pessoa.login]!["dados"]!.remove("senha");
+      print("Senha removida!");
+    } else if (opcao == 4) {
+      break;
+    }
+  }
 }
